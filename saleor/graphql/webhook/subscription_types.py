@@ -521,6 +521,33 @@ class TranslationUpdated(ObjectType, TranslationBase):
     ...
 
 
+class VoucherBase(AbstractType):
+    voucher = graphene.Field(
+        "saleor.graphql.discount.types.Voucher",
+        channel=graphene.String(
+            description="Slug of a channel for which the data should be returned."
+        ),
+        description="Look up a voucher." + ADDED_IN_32 + PREVIEW_FEATURE,
+    )
+
+    @staticmethod
+    def resolve_voucher(root, _info):
+        _, voucher = root
+        return ChannelContext(node=voucher, channel_slug=None)
+
+
+class VoucherCreated(ObjectType, VoucherBase):
+    ...
+
+
+class VoucherUpdated(ObjectType, VoucherBase):
+    ...
+
+
+class VoucherDeleted(ObjectType, VoucherBase):
+    ...
+
+
 class Event(Union):
     class Meta:
         types = (
@@ -578,6 +605,9 @@ class Event(Union):
             ShippingZoneDeleted,
             TranslationCreated,
             TranslationUpdated,
+            VoucherCreated,
+            VoucherUpdated,
+            VoucherDeleted,
         )
 
     @classmethod
@@ -641,6 +671,9 @@ class Event(Union):
             WebhookEventAsyncType.SHIPPING_ZONE_DELETED: ShippingZoneDeleted,
             WebhookEventAsyncType.TRANSLATION_CREATED: TranslationCreated,
             WebhookEventAsyncType.TRANSLATION_UPDATED: TranslationUpdated,
+            WebhookEventAsyncType.VOUCHER_CREATED: VoucherCreated,
+            WebhookEventAsyncType.VOUCHER_UPDATED: VoucherUpdated,
+            WebhookEventAsyncType.VOUCHER_DELETED: VoucherDeleted,
         }
         return types.get(object_type)
 

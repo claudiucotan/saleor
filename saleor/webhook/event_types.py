@@ -90,6 +90,10 @@ class WebhookEventAsyncType:
     TRANSLATION_CREATED = "translation_created"
     TRANSLATION_UPDATED = "translation_updated"
 
+    VOUCHER_CREATED = "voucher_created"
+    VOUCHER_UPDATED = "voucher_updated"
+    VOUCHER_DELETED = "voucher_deleted"
+
     DISPLAY_LABELS = {
         ANY: "Any events",
         CATEGORY_CREATED: "Category created",
@@ -147,6 +151,9 @@ class WebhookEventAsyncType:
         SHIPPING_ZONE_DELETED: "Shipping zone deleted",
         TRANSLATION_CREATED: "Create translation",
         TRANSLATION_UPDATED: "Update translation",
+        VOUCHER_CREATED: "Voucher created",
+        VOUCHER_UPDATED: "Voucher updated",
+        VOUCHER_DELETED: "Voucher deleted",
     }
 
     CHOICES = [
@@ -206,6 +213,9 @@ class WebhookEventAsyncType:
         (SHIPPING_ZONE_DELETED, DISPLAY_LABELS[SHIPPING_ZONE_DELETED]),
         (TRANSLATION_CREATED, DISPLAY_LABELS[TRANSLATION_CREATED]),
         (TRANSLATION_UPDATED, DISPLAY_LABELS[TRANSLATION_UPDATED]),
+        (VOUCHER_CREATED, DISPLAY_LABELS[VOUCHER_CREATED]),
+        (VOUCHER_UPDATED, DISPLAY_LABELS[VOUCHER_UPDATED]),
+        (VOUCHER_DELETED, DISPLAY_LABELS[VOUCHER_DELETED]),
     ]
 
     ALL = [event[0] for event in CHOICES]
@@ -266,6 +276,9 @@ class WebhookEventAsyncType:
         SHIPPING_ZONE_DELETED: ShippingPermissions.MANAGE_SHIPPING,
         TRANSLATION_CREATED: SitePermissions.MANAGE_TRANSLATIONS,
         TRANSLATION_UPDATED: SitePermissions.MANAGE_TRANSLATIONS,
+        VOUCHER_CREATED: DiscountPermissions.MANAGE_DISCOUNTS,
+        VOUCHER_UPDATED: DiscountPermissions.MANAGE_DISCOUNTS,
+        VOUCHER_DELETED: DiscountPermissions.MANAGE_DISCOUNTS,
     }
 
 
@@ -395,4 +408,7 @@ SUBSCRIBABLE_EVENTS = [
     WebhookEventAsyncType.SHIPPING_ZONE_DELETED,
     WebhookEventAsyncType.TRANSLATION_CREATED,
     WebhookEventAsyncType.TRANSLATION_UPDATED,
+    WebhookEventAsyncType.VOUCHER_CREATED,
+    WebhookEventAsyncType.VOUCHER_UPDATED,
+    WebhookEventAsyncType.VOUCHER_DELETED,
 ]
