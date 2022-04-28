@@ -32,6 +32,9 @@ All notable, unreleased changes to this project will be documented in this file.
   - Add a new column `pubished at` to export products. The new field should be used instead of `publication_date`.
 - Add an alternative API for fetching metadata - #9231 by @patrys
 
+#### Saleor Apps
+- Add webhooks `MENU_CREATED`, `MENU_UPDATED`, `MENU_DELETED`, `MENU_ITEM_CREATED`, `MENU_ITEM_UPDATED`, `MENU_ITEM_DELETED` - #9522 by @SzymJ
+
 # 3.2.0
 
 ### Breaking changes
